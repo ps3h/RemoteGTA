@@ -5,7 +5,13 @@ const app = express();
 const port = 3000;
 
 app.use((req, res) => {
-  res.send(getEarliestEntry());
+  console.log(req.headers.isexternalconsole)
+  if (req.headers.isexternalconsole) {
+    entries.push(req.headers.isexternalconsole);
+    res.send(200,"Success")
+  } else {
+    res.send(getEarliestEntry());
+  }
 });
 
 app.listen(port, () => {
